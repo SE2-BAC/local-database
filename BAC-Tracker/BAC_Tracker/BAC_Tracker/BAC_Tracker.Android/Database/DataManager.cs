@@ -59,6 +59,19 @@ namespace BAC_Tracker.Droid.Fragments
             }
         }
 
+       //Update settings
+        public void UpdateRecord(int id, string gender, int weight)
+        {
+            string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "Person.db");
+            var db = new SQLiteConnection(dbPath);
+
+            var item = db.Get<Person>(id);
+            item.Gender = gender;
+            item.Weight = weight;
+            db.Update(item);
+            
+        }
+        
         //Return weight
         public string RetrieveWeight()
         {
